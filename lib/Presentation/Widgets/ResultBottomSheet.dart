@@ -1,12 +1,11 @@
-import 'package:bmi_calculator/Classes/CalculatorLogic.dart';
+import 'package:bmi_calculator/Logic/BMI.dart';
 import 'package:flutter/material.dart';
 
 class ResultBottomSheet extends StatelessWidget {
-  ResultBottomSheet(
-      {@required this.screenHeight, @required this.calculatorLogic});
+  ResultBottomSheet({@required this.screenHeight, @required this.bmiResult});
 
   final double screenHeight;
-  final CalculatorLogic calculatorLogic;
+  final BMIResult bmiResult;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +25,11 @@ class ResultBottomSheet extends StatelessWidget {
                   style: TextStyle(fontSize: 25.0, color: Colors.white),
                 ),
                 Text(
-                  calculatorLogic.getBMIResult().result.toStringAsFixed(1),
+                  bmiResult.result.toStringAsFixed(1),
                   style: TextStyle(fontSize: 70.0, color: Colors.white),
                 ),
                 Text(
-                  calculatorLogic.getBMIResult().description,
+                  bmiResult.description,
                   style: TextStyle(
                     fontSize: 30.0,
                     color: Colors.white,
@@ -73,7 +72,7 @@ class ResultBottomSheet extends StatelessWidget {
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          calculatorLogic.getBMIResult().color,
+                          bmiResult.color,
                         ),
                       ),
                     ),

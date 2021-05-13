@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class BMI {
   BMI({this.maxValue, this.minValue, this.description, this.color});
 
-  double maxValue = 0.0;
-  double minValue = 0.0;
-  String description = '';
-  Color color = Colors.black;
+  final double maxValue;
+  final double minValue;
+  final String description;
+  final Color color;
 }
 
 class BMIResult extends BMI {

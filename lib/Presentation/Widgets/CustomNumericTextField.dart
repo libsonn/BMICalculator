@@ -3,22 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomNumericTextField extends StatelessWidget {
-  CustomNumericTextField({
-    @required this.controller,
-    @required this.onChanged,
-    @required this.hint,
-    @required this.textFieldDescription,
-    @required this.textFieldBounds,
-    @required this.validationError,
-  });
+  CustomNumericTextField(
+      {@required this.onChanged,
+      @required this.hint,
+      @required this.textFieldDescription,
+      @required this.textFieldBounds,
+      @required this.textEditingController});
 
-  final TextEditingController controller;
   final Function onChanged;
   final String hint;
   final String textFieldDescription;
   final String textFieldBounds;
-
-  final String validationError;
+  final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +65,7 @@ class CustomNumericTextField extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 2.0),
                 child: TextField(
-                  controller: controller,
+                  controller: textEditingController,
                   cursorColor: deepAquaColor,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
                   textAlign: TextAlign.center,
@@ -88,13 +84,6 @@ class CustomNumericTextField extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 2.0),
-            Center(
-              child: Text(
-                validationError,
-                style: TextStyle(color: Colors.red, fontSize: 10.0),
-              ),
-            )
           ],
         ),
       ),
