@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/Logic/BMI.dart';
+import 'package:bmi_calculator/logic/bmi.dart';
 import 'package:flutter/material.dart';
 
 class ResultBottomSheet extends StatelessWidget {
@@ -25,7 +25,7 @@ class ResultBottomSheet extends StatelessWidget {
                   style: TextStyle(fontSize: 25.0, color: Colors.white),
                 ),
                 Text(
-                  bmiResult.result.toStringAsFixed(1),
+                  bmiResult.value.toStringAsFixed(1),
                   style: TextStyle(fontSize: 70.0, color: Colors.white),
                 ),
                 Text(

@@ -1,49 +1,9 @@
 import 'dart:math';
 
-import 'package:bmi_calculator/Logic/BMI.dart';
+import 'package:bmi_calculator/logic/bmi.dart';
 import 'package:bmi_calculator/constants.dart';
-import 'package:flutter/cupertino.dart';
 
 class CalculatorLogic {
-  List<BMI> _listOfBMIs = [
-    BMI(
-      minValue: 0.0,
-      maxValue: 18.5,
-      description: 'Underweight',
-      color: Color(0xFF7AB1FF),
-    ),
-    BMI(
-      minValue: 18.5,
-      maxValue: 24.9,
-      description: 'Healthy weight',
-      color: Color(0xFF117243),
-    ),
-    BMI(
-      minValue: 24.9,
-      maxValue: 29.9,
-      description: 'Overweight',
-      color: Color(0xFFFF595E),
-    ),
-    BMI(
-      minValue: 29.9,
-      maxValue: 34.9,
-      description: 'Class 1 Obesity',
-      color: Color(0xFFFF0000),
-    ),
-    BMI(
-      minValue: 34.9,
-      maxValue: 39.9,
-      description: 'Class 2 Obesity',
-      color: Color(0xFF922D25),
-    ),
-    BMI(
-      minValue: 39.9,
-      maxValue: double.maxFinite,
-      description: 'Class 3 Obesity',
-      color: Color(0xFF460000),
-    )
-  ];
-
   double toMetricalHeight({double height, Units units}) {
     double _metricalHeight = height;
 
@@ -54,15 +14,15 @@ class CalculatorLogic {
       _metricalHeight = height * 59.55;
     }
 
-    return roundDouble(_metricalHeight, 1);
+    return _metricalHeight;
   }
 
   double convertHeightUnits(
-      {double height, Units previuosUnits, Units selectedUnits}) {
+      {double height, Units previousUnits, Units selectedUnits}) {
     double _convertedHeight = 0.0;
 
     double _metricalHeight =
-        toMetricalHeight(height: height, units: previuosUnits);
+        toMetricalHeight(height: height, units: previousUnits);
 
     switch (selectedUnits) {
       case Units.Metrical:
@@ -78,7 +38,7 @@ class CalculatorLogic {
         break;
     }
 
-    return roundDouble(_convertedHeight, 1);
+    return _convertedHeight;
   }
 
   double toMetricalWeight({double weight, Units units}) {
@@ -91,15 +51,15 @@ class CalculatorLogic {
       _metricalWeight = weight * 0.4052;
     }
 
-    return roundDouble(_metricalWeight, 1);
+    return _metricalWeight;
   }
 
   double convertWeightUnits(
-      {double weight, Units previuosUnits, Units selectedUnits}) {
+      {double weight, Units previousUnits, Units selectedUnits}) {
     double _convertedWeight = 0.0;
 
     double _metricalWeight =
-        toMetricalWeight(weight: weight, units: previuosUnits);
+        toMetricalWeight(weight: weight, units: previousUnits);
 
     switch (selectedUnits) {
       case Units.Metrical:
@@ -115,7 +75,7 @@ class CalculatorLogic {
         break;
     }
 
-    return roundDouble(_convertedWeight, 1);
+    return _convertedWeight;
   }
 
   bool validateHeight({String height, Units selectedUnits}) {
@@ -129,12 +89,30 @@ class CalculatorLogic {
           }
           break;
         case Units.Imperial:
-          if (_heightValue < 3 || _heightValue > 7) {
+          if (_heightValue <
+                  convertHeightUnits(
+                      height: 100,
+                      previousUnits: Units.Metrical,
+                      selectedUnits: Units.Imperial) ||
+              _heightValue >
+                  convertHeightUnits(
+                      height: 220,
+                      previousUnits: Units.Metrical,
+                      selectedUnits: Units.Imperial)) {
             return false;
           }
           break;
         case Units.OldPolish:
-          if (_heightValue < 1.7 || _heightValue > 3.7) {
+          if (_heightValue <
+                  convertHeightUnits(
+                      height: 100,
+                      previousUnits: Units.Metrical,
+                      selectedUnits: Units.OldPolish) ||
+              _heightValue >
+                  convertHeightUnits(
+                      height: 220,
+                      previousUnits: Units.Metrical,
+                      selectedUnits: Units.OldPolish)) {
             return false;
           }
           break;
@@ -182,19 +160,13 @@ class CalculatorLogic {
     }
 
     _bmiValue = _metricalWeight / pow(_metricalHeight / 100, 2);
-
-    for (BMI bmi in _listOfBMIs) {
+    for (var bmi in listOfBMIs) {
       if (_bmiValue > bmi.minValue && _bmiValue <= bmi.maxValue) {
         _bmiResult = BMIResult(
-            result: _bmiValue, description: bmi.description, color: bmi.color);
+            value: _bmiValue, description: bmi.description, color: bmi.color);
       }
     }
 
     return _bmiResult;
-  }
-
-  double roundDouble(double value, int places) {
-    double mod = pow(10.0, places);
-    return ((value * mod).round().toDouble() / mod);
   }
 }

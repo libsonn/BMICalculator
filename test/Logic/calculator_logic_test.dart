@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/Logic/CalculatorLogic.dart';
+import 'package:bmi_calculator/logic/calculator_logic.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,46 +9,58 @@ void main() {
     test('return correct values', () {
       //Metrical -> Imperial
       expect(
-          calculatorLogic.convertHeightUnits(
-              height: 169.0,
-              previuosUnits: Units.Metrical,
-              selectedUnits: Units.Imperial),
-          equals(5.5));
+          calculatorLogic
+              .convertHeightUnits(
+                  height: 169.0,
+                  previousUnits: Units.Metrical,
+                  selectedUnits: Units.Imperial)
+              .toStringAsFixed(1),
+          equals('5.5'));
       //Metrical -> OldPolish
       expect(
-          calculatorLogic.convertHeightUnits(
-              height: 169.0,
-              previuosUnits: Units.Metrical,
-              selectedUnits: Units.OldPolish),
-          equals(2.8));
+          calculatorLogic
+              .convertHeightUnits(
+                  height: 169.0,
+                  previousUnits: Units.Metrical,
+                  selectedUnits: Units.OldPolish)
+              .toStringAsFixed(1),
+          equals('2.8'));
       //Imperial -> Metrical
       expect(
-          calculatorLogic.convertHeightUnits(
-              height: 5.5,
-              previuosUnits: Units.Imperial,
-              selectedUnits: Units.Metrical),
-          equals(167.6));
+          calculatorLogic
+              .convertHeightUnits(
+                  height: 5.5,
+                  previousUnits: Units.Imperial,
+                  selectedUnits: Units.Metrical)
+              .toStringAsFixed(1),
+          equals('167.6'));
       //Imperial -> OldPolish
       expect(
-          calculatorLogic.convertHeightUnits(
-              height: 5.5,
-              previuosUnits: Units.Imperial,
-              selectedUnits: Units.OldPolish),
-          equals(2.8));
+          calculatorLogic
+              .convertHeightUnits(
+                  height: 5.5,
+                  previousUnits: Units.Imperial,
+                  selectedUnits: Units.OldPolish)
+              .toStringAsFixed(1),
+          equals('2.8'));
       //OldPolish -> Metrical
       expect(
-          calculatorLogic.convertHeightUnits(
-              height: 2.8,
-              previuosUnits: Units.OldPolish,
-              selectedUnits: Units.Metrical),
-          equals(166.7));
+          calculatorLogic
+              .convertHeightUnits(
+                  height: 2.8,
+                  previousUnits: Units.OldPolish,
+                  selectedUnits: Units.Metrical)
+              .toStringAsFixed(1),
+          equals('166.7'));
       //OldPolish -> Imperial
       expect(
-          calculatorLogic.convertHeightUnits(
-              height: 2.8,
-              previuosUnits: Units.OldPolish,
-              selectedUnits: Units.Imperial),
-          equals(5.5));
+          calculatorLogic
+              .convertHeightUnits(
+                  height: 2.8,
+                  previousUnits: Units.OldPolish,
+                  selectedUnits: Units.Imperial)
+              .toStringAsFixed(1),
+          equals('5.5'));
     });
   });
 
@@ -58,48 +70,60 @@ void main() {
     test('return correct values', () {
       //Metrical -> Imperial
       expect(
-          calculatorLogic.convertWeightUnits(
-              weight: 75.2,
-              previuosUnits: Units.Metrical,
-              selectedUnits: Units.Imperial),
-          equals(165.8));
+          calculatorLogic
+              .convertWeightUnits(
+                  weight: 75.2,
+                  previousUnits: Units.Metrical,
+                  selectedUnits: Units.Imperial)
+              .toStringAsFixed(1),
+          equals('165.8'));
       //Metrical -> OldPolish
       expect(
-          calculatorLogic.convertWeightUnits(
-              weight: 165.8,
-              previuosUnits: Units.Metrical,
-              selectedUnits: Units.OldPolish),
-          equals(409.2));
+          calculatorLogic
+              .convertWeightUnits(
+                  weight: 165.8,
+                  previousUnits: Units.Metrical,
+                  selectedUnits: Units.OldPolish)
+              .toStringAsFixed(1),
+          equals('409.2'));
 
       //Impreial -> Metrical
       expect(
-          calculatorLogic.convertWeightUnits(
-              weight: 165.8,
-              previuosUnits: Units.Imperial,
-              selectedUnits: Units.Metrical),
-          equals(75.2));
+          calculatorLogic
+              .convertWeightUnits(
+                  weight: 165.8,
+                  previousUnits: Units.Imperial,
+                  selectedUnits: Units.Metrical)
+              .toStringAsFixed(1),
+          equals('75.2'));
       //Impreial -> OldPolish
       expect(
-          calculatorLogic.convertWeightUnits(
-              weight: 165.8,
-              previuosUnits: Units.Imperial,
-              selectedUnits: Units.OldPolish),
-          equals(185.6));
+          calculatorLogic
+              .convertWeightUnits(
+                  weight: 165.8,
+                  previousUnits: Units.Imperial,
+                  selectedUnits: Units.OldPolish)
+              .toStringAsFixed(1),
+          equals('185.6'));
 
       //OldPolish -> Metrical
       expect(
-          calculatorLogic.convertWeightUnits(
-              weight: 185.8,
-              previuosUnits: Units.OldPolish,
-              selectedUnits: Units.Metrical),
-          equals(75.3));
+          calculatorLogic
+              .convertWeightUnits(
+                  weight: 185.8,
+                  previousUnits: Units.OldPolish,
+                  selectedUnits: Units.Metrical)
+              .toStringAsFixed(1),
+          equals('75.3'));
       //OldPolish -> Imperial
       expect(
-          calculatorLogic.convertWeightUnits(
-              weight: 185.8,
-              previuosUnits: Units.OldPolish,
-              selectedUnits: Units.Imperial),
-          equals(166.0));
+          calculatorLogic
+              .convertWeightUnits(
+                  weight: 185.8,
+                  previousUnits: Units.OldPolish,
+                  selectedUnits: Units.Imperial)
+              .toStringAsFixed(1),
+          equals('166.0'));
     });
   });
 
@@ -135,7 +159,7 @@ void main() {
           equals(false));
       expect(
           calculatorLogic.validateHeight(
-              height: '3', selectedUnits: Units.Imperial),
+              height: '3.3', selectedUnits: Units.Imperial),
           equals(true));
       expect(
           calculatorLogic.validateHeight(
@@ -143,11 +167,11 @@ void main() {
           equals(true));
       expect(
           calculatorLogic.validateHeight(
-              height: '7', selectedUnits: Units.Imperial),
+              height: '7.2', selectedUnits: Units.Imperial),
           equals(true));
       expect(
           calculatorLogic.validateHeight(
-              height: '7.1', selectedUnits: Units.Imperial),
+              height: '7.3', selectedUnits: Units.Imperial),
           equals(false));
     });
 
@@ -166,7 +190,7 @@ void main() {
           equals(true));
       expect(
           calculatorLogic.validateHeight(
-              height: '3.7', selectedUnits: Units.OldPolish),
+              height: '3.6', selectedUnits: Units.OldPolish),
           equals(true));
       expect(
           calculatorLogic.validateHeight(
