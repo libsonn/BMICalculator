@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/logic/bmi.dart';
+import 'package:flutter/material.dart';
 
 class CalculatorModel {
   final double height;
@@ -10,12 +11,12 @@ class CalculatorModel {
   final BMIResult result;
 
   CalculatorModel({
-    this.height: 0.0,
-    this.weight: 0.0,
-    this.unit: Units.Metrical,
-    this.heightError: false,
-    this.weightError: false,
-    this.result,
+    @required this.height,
+    @required this.weight,
+    @required this.unit,
+    @required this.heightError,
+    @required this.weightError,
+    @required this.result,
   });
 
   CalculatorModel copyWith(

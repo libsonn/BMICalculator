@@ -9,18 +9,15 @@ abstract class CalculatorEvent extends Equatable {
 
 class EnterHeight extends CalculatorEvent {
   final String height;
-
-  EnterHeight({this.height});
+  EnterHeight({@required this.height});
 }
 
 class EnterWeight extends CalculatorEvent {
   final String weight;
-
-  EnterWeight({this.weight});
+  EnterWeight({@required this.weight});
 }
 
 class ChangeUnit extends CalculatorEvent {
   final Units selectedUnits;
-
-  ChangeUnit({this.selectedUnits});
+  ChangeUnit({@required this.selectedUnits});
 }

@@ -81,41 +81,11 @@ class CalculatorLogic {
   bool validateHeight({String height, Units selectedUnits}) {
     if (double.tryParse(height) != null) {
       double _heightValue = double.parse(height);
+      double _metricalHeight =
+          toMetricalHeight(height: _heightValue, units: selectedUnits);
 
-      switch (selectedUnits) {
-        case Units.Metrical:
-          if (_heightValue < 100 || _heightValue > 220) {
-            return false;
-          }
-          break;
-        case Units.Imperial:
-          if (_heightValue <
-                  convertHeightUnits(
-                      height: 100,
-                      previousUnits: Units.Metrical,
-                      selectedUnits: Units.Imperial) ||
-              _heightValue >
-                  convertHeightUnits(
-                      height: 220,
-                      previousUnits: Units.Metrical,
-                      selectedUnits: Units.Imperial)) {
-            return false;
-          }
-          break;
-        case Units.OldPolish:
-          if (_heightValue <
-                  convertHeightUnits(
-                      height: 100,
-                      previousUnits: Units.Metrical,
-                      selectedUnits: Units.OldPolish) ||
-              _heightValue >
-                  convertHeightUnits(
-                      height: 220,
-                      previousUnits: Units.Metrical,
-                      selectedUnits: Units.OldPolish)) {
-            return false;
-          }
-          break;
+      if (_metricalHeight < 100 || _metricalHeight > 220) {
+        return false;
       }
       return true;
     }
@@ -125,22 +95,11 @@ class CalculatorLogic {
   bool validateWeight({String weight, Units selectedUnits}) {
     if (double.tryParse(weight) != null) {
       double _weightValue = double.parse(weight);
-      switch (selectedUnits) {
-        case Units.Metrical:
-          if (_weightValue < 20 || _weightValue > 300) {
-            return false;
-          }
-          break;
-        case Units.Imperial:
-          if (_weightValue < 44 || _weightValue > 661) {
-            return false;
-          }
-          break;
-        case Units.OldPolish:
-          if (_weightValue < 50 || _weightValue > 740) {
-            return false;
-          }
-          break;
+      double _metricalWeight =
+          toMetricalWeight(weight: _weightValue, units: selectedUnits);
+
+      if (_metricalWeight < 20 || _metricalWeight > 300) {
+        return false;
       }
       return true;
     }

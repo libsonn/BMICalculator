@@ -25,26 +25,33 @@ class ShowResultButton extends StatelessWidget {
           width: screenWidth / 1.2,
           child: BlocBuilder<CalculatorBloc, CalculatorState>(
             builder: (context, state) {
-              return CalculateButton(
-                onPressed: () {
-                  if (!state.calculatorModel.heightError &&
-                      !state.calculatorModel.weightError) {
-                    showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        backgroundColor: state.calculatorModel.result.color,
-                        builder: (BuildContext context) {
-                          return ResultBottomSheet(
-                            screenHeight: screenHeight,
-                            bmiResult: state.calculatorModel.result,
-                          );
-                        });
-                  }
-                },
-              );
+              if (state is CalculatorInitialState) {
+                CalculateButton(
+                  onPressed: () {},
+                );
+              } else if (state is CalculationInputChanged) {
+                return CalculateButton(
+                  onPressed: () {
+                    if (!state.calculatorModel.heightError &&
+                        !state.calculatorModel.weightError) {
+                      showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          backgroundColor: state.calculatorModel.result.color,
+                          builder: (BuildContext context) {
+                            return ResultBottomSheet(
+                              screenHeight: screenHeight,
+                              bmiResult: state.calculatorModel.result,
+                            );
+                          });
+                    }
+                  },
+                );
+              }
+              return null;
             },
           ),
         ),

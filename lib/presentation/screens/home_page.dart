@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/Presentation/widgets/unit_select_checkboxes.dart';
 import 'package:bmi_calculator/logic/bloc/calculator_bloc.dart';
+import 'package:bmi_calculator/logic/calculator_logic.dart';
 import 'package:bmi_calculator/presentation/widgets/data_inputs.dart';
 import 'package:bmi_calculator/presentation/widgets/live_result_data.dart';
 
@@ -20,7 +21,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
-        create: (context) => CalculatorBloc(),
+        create: (context) => CalculatorBloc(
+          calculatorLogic: new CalculatorLogic(),
+        ),
         child: Column(
           children: [
             Container(

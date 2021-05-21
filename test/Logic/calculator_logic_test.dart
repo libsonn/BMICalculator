@@ -163,7 +163,7 @@ void main() {
           equals(true));
       expect(
           calculatorLogic.validateHeight(
-              height: '3.3', selectedUnits: Units.Imperial),
+              height: '4.5', selectedUnits: Units.Imperial),
           equals(true));
       expect(
           calculatorLogic.validateHeight(
@@ -230,7 +230,7 @@ void main() {
           equals(false));
       expect(
           calculatorLogic.validateWeight(
-              weight: '44', selectedUnits: Units.Imperial),
+              weight: '45', selectedUnits: Units.Imperial),
           equals(true));
       expect(
           calculatorLogic.validateWeight(
