@@ -34,9 +34,11 @@ class DataInputs extends StatelessWidget {
               CustomNumericTextField(
                 textEditingController: heightController,
                 onChanged: (value) {
-                  _enteredHeight = value.toString().replaceAll(',', '.');
-                  BlocProvider.of<CalculatorBloc>(context)
-                      .add(EnterHeight(height: _enteredHeight));
+                  if (double.tryParse(value) != null) {
+                    _enteredHeight = value.toString().replaceAll(',', '.');
+                    BlocProvider.of<CalculatorBloc>(context)
+                        .add(EnterHeight(height: _enteredHeight));
+                  }
                 },
                 hint: 'Enter your height',
                 textFieldDescription: 'Height',
@@ -58,9 +60,11 @@ class DataInputs extends StatelessWidget {
               CustomNumericTextField(
                 textEditingController: weightController,
                 onChanged: (value) {
-                  _enteredWeight = value.toString().replaceAll(',', '.');
-                  BlocProvider.of<CalculatorBloc>(context)
-                      .add(EnterWeight(weight: _enteredWeight));
+                  if (double.tryParse(value) != null) {
+                    _enteredWeight = value.toString().replaceAll(',', '.');
+                    BlocProvider.of<CalculatorBloc>(context)
+                        .add(EnterWeight(weight: _enteredWeight));
+                  }
                 },
                 hint: 'Enter your weight',
                 textFieldDescription: 'Weight',
@@ -90,10 +94,11 @@ class DataInputs extends StatelessWidget {
               CustomNumericTextField(
                 textEditingController: heightController,
                 onChanged: (value) {
-                  _enteredHeight = value.toString().replaceAll(',', '.');
-
-                  BlocProvider.of<CalculatorBloc>(context)
-                      .add(EnterHeight(height: _enteredHeight));
+                  if (double.tryParse(value) != null) {
+                    _enteredHeight = value.toString().replaceAll(',', '.');
+                    BlocProvider.of<CalculatorBloc>(context)
+                        .add(EnterHeight(height: _enteredHeight));
+                  }
                 },
                 hint: 'Enter your height',
                 textFieldDescription: 'Height',
@@ -115,11 +120,13 @@ class DataInputs extends StatelessWidget {
               CustomNumericTextField(
                 textEditingController: weightController,
                 onChanged: (value) {
-                  _enteredWeight = value.toString().replaceAll(',', '.');
+                  if (double.tryParse(value) != null) {
+                    _enteredWeight = value.toString().replaceAll(',', '.');
 
-                  BlocProvider.of<CalculatorBloc>(context).add(
-                    EnterWeight(weight: _enteredWeight),
-                  );
+                    BlocProvider.of<CalculatorBloc>(context).add(
+                      EnterWeight(weight: _enteredWeight),
+                    );
+                  }
                 },
                 hint: 'Enter your weight',
                 textFieldDescription: 'Weight',
